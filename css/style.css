@@ -1,15 +1,15 @@
-/* ==== 1. VARIABLES Y RESET GLOBALES ==== */
+
 :root {
-  --primary-color: #00aaff;   /* Azul eléctrico */
-  --secondary-color: #00ffaa; /* Verde neón/menta */
-  --bg-dark: #0f172a;         /* Fondo principal (Azul muy oscuro) */
-  --bg-card: #1e293b;         /* Fondo para tarjetas (Azul-gris) */
-  --text-light: #f1f5f9;      /* Texto principal (Casi blanco) */
-  --text-muted: #94a3b8;      /* Texto secundario (Gris-azul) */
-  --border-color: #334155;    /* Bordes */
+  --primary-color: #00aaff;   
+  --secondary-color: #00ffaa; 
+  --bg-dark: #0f172a;         
+  --bg-card: #1e293b;         
+  --text-light: #f1f5f9;      
+  --text-muted: #94a3b8;     
+  --border-color: #334155;    
 }
 
-/* Reset básico */
+
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +17,7 @@
 }
 
 html {
-  scroll-behavior: smooth; /* Para el clic en anclas */
+  scroll-behavior: smooth; 
 }
 
 body {
@@ -27,7 +27,7 @@ body {
   line-height: 1.6;
 }
 
-/* Clases de utilidad */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -56,7 +56,7 @@ h2 { font-size: 2rem; color: var(--primary-color); text-align: center; }
 h3 { font-size: 1.5rem; color: var(--secondary-color); }
 p { margin-bottom: 15px; color: var(--text-muted); }
 
-/* ==== 2. BOTONES ==== */
+
 .btn {
   display: inline-block;
   padding: 12px 24px;
@@ -135,7 +135,7 @@ header .container {
   font-size: 1.5rem;
 }
 
-/* --- BOTÓN HAMBURGUESA --- */
+/* --- BOTÓN --- */
 #menu-toggle {
   display: flex;
   flex-direction: column;
@@ -389,7 +389,7 @@ footer {
   }
 }
 
-/* ==== 7. OPTIMIZACIÓN PARA MÓVILES (MENOR A 480px) ==== */
+/*OPTIMIZACIÓN*/
 @media (max-width: 480px) {
   body {
     font-size: 0.95rem;
