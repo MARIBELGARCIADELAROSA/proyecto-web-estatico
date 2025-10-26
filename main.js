@@ -1,21 +1,21 @@
-/* ============================
-   main.js – Código principal
-   ============================ */
+// ============================
+// main.js – Código principal
+// ============================
 
 // ========= MENÚ HAMBURGUESA =========
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
+    navLinks.classList.toggle('active'); // activa la clase correcta del CSS
     menuToggle.classList.toggle('active');
   });
 
   // Cerrar menú al hacer clic en un enlace
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
+      navLinks.classList.remove('active');
       menuToggle.classList.remove('active');
     });
   });
@@ -60,7 +60,6 @@ if (form) {
 
 // ========= EFECTO SCROLL EN HEADER =========
 const header = document.querySelector('header');
-
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
     header.classList.add('scrolled');
