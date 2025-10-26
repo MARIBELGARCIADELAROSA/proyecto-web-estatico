@@ -90,6 +90,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: background-color 0.3s ease; /* Para efecto scroll */
 }
 
 header .container {
@@ -102,42 +103,50 @@ header .container {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--text-light);
-  z-index: 101; /* Para que esté sobre el menú móvil */
+  z-index: 103; /* Para que esté sobre el menú móvil y overlay */
 }
 
 /* --- ESTILOS DEL MENÚ MÓVIL --- */
+
+/* Oculta los links en móvil por defecto */
 .nav-links {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  position: fixed;
+  flex-direction: column; /* Apila los links verticalmente */
+  position: fixed; /* Ocupa toda la pantalla */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100vh; /* 100% de la altura de la pantalla */
   background-color: var(--bg-card);
   align-items: center;
   justify-content: center;
   gap: 25px;
-  transform: translateX(100%);
+  z-index: 102; /* Por encima del overlay (101) */
+  
+  /* Animación */
+  transform: translateX(100%); /* Lo saca de la pantalla */
   transition: transform 0.3s ease-in-out;
 }
 
+/* El JS añade esta clase para MOSTRAR el menú */
 .nav-links.active {
   transform: translateX(0%);
 }
 
 .nav-links li a {
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Links más grandes en móvil */
   color: var(--text-light);
 }
 .nav-links li .btn-primary {
   font-size: 1.5rem;
 }
 
-/* --- BOTÓN HAMBURGUESA --- */
+
+/* --- ESTILOS DEL BOTÓN HAMBURGUESA (☰) --- */
+
 #menu-toggle {
-  display: flex;
+  display: flex; /* Visible en móvil */
   flex-direction: column;
   justify-content: space-around;
   width: 30px;
@@ -145,7 +154,7 @@ header .container {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 101;
+  z-index: 103; /* Sobre el menú y overlay */
 }
 
 .bar {
@@ -157,6 +166,7 @@ header .container {
   transition: all 0.3s ease-in-out;
 }
 
+/* Animación del botón a "X" */
 #menu-toggle.active .bar:nth-child(1) {
   transform: translateY(11px) rotate(45deg);
 }
@@ -231,18 +241,22 @@ table tbody tr:hover {
 #metodologia { 
   background-color: var(--bg-card); 
 }
+
 .metodologia-grid {
   margin-top: 30px;
+  /* Se apila en móviles por defecto */
 }
+
 .metodo-paso {
   background-color: var(--bg-dark);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Espacio entre pasos en móvil */
 }
+
 .metodo-paso h3 {
-  color: var(--primary-color);
+  color: var(--primary-color); /* Destaca el título del paso */
   margin-top: 0;
   margin-bottom: 10px;
 }
@@ -266,7 +280,7 @@ blockquote footer {
   color: var(--secondary-color);
 }
 
-/* Contacto */
+/* Contacto (Formulario e Iframe) */
 #contacto { background-color: var(--bg-card); }
 .form-container label {
   display: block;
@@ -329,26 +343,37 @@ footer {
   font-size: 0.9rem;
 }
 
-/* ==== 6. RESPONSIVIDAD GENERAL ==== */
-@media (min-width: 768px) {
-  #menu-toggle { display: none; }
+/* ==== 6. RESPONSIVIDAD (Media Queries) ==== */
+/* (Mobile-First ya está aplicado) */
 
+/* Para Tablets y Desktops */
+@media (min-width: 768px) {
+  
+  /* Oculta el botón hamburguesa en desktop */
+  #menu-toggle {
+    display: none;
+  }
+
+  /* Muestra el menú de navegación de desktop */
   .nav-links {
-    position: static;
-    flex-direction: row;
+    position: static; /* Devuelve el menú a su lugar */
+    flex-direction: row; /* Pone los links en horizontal */
     height: auto;
     width: auto;
     background-color: transparent;
-    transform: translateX(0);
+    transform: translateX(0); /* Cancela la animación móvil */
     gap: 20px;
     align-items: center;
   }
 
-  .nav-links li a,
+  .nav-links li a {
+    font-size: 1rem; /* Tamaño normal en desktop */
+  }
   .nav-links li .btn-primary {
     font-size: 1rem;
   }
-
+  
+  /* Layouts en Grid o Flex */
   .hero-content {
     display: flex;
     flex-direction: row;
@@ -360,28 +385,36 @@ footer {
     max-width: 45%;
     margin: 0;
   }
+  
   .sobre-nosotros-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
   }
+
   .metodologia-grid {
     display: grid;
+    /* 2 columnas en tablets */
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
+
   .testimonios-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
+
   .contacto-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: flex-start;
   }
-  .map-container iframe { margin-top: 0; }
+  .map-container iframe {
+    margin-top: 0;
+  }
+
   .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -389,107 +422,33 @@ footer {
   }
 }
 
-/* ==== 7. OPTIMIZACIÓN PARA MÓVILES (MENOR A 480px) ==== */
-@media (max-width: 480px) {
-  body {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    padding-bottom: 60px;
-  }
+/* ==== 7. ESTILOS PARA JS AVANZADO ==== */
 
-  header { padding: 15px 0; }
-
-  .logo { font-size: 1.2rem; }
-
-  .nav-links li a { font-size: 1.2rem; }
-
-  section { padding: 40px 15px; }
-
-  .hero {
-    padding-top: 20px;
-  }
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-  .hero p {
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-  }
-  .hero-image {
-    max-width: 80%;
-    margin-top: 20px;
-  }
-
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.2rem; }
-
-  table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    font-size: 0.9rem;
-  }
-  table th, table td {
-    padding: 10px;
-  }
-
-  .logos-clientes img {
-    max-width: 100px;
-  }
-
-  .metodo-paso {
-    padding: 15px;
-  }
-
-  .form-container input,
-  .form-container textarea {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-
-  .map-container iframe {
-    height: 250px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 15px;
-  }
-  .footer-grid a {
-    justify-content: center;
-  }
-  .footer-bottom {
-    font-size: 0.8rem;
-  }
-
-  .btn {
-    padding: 10px 18px;
-    font-size: 0.9rem;
-  }
-}
-
-/* Asegurar que el botón sea clicable y visible sobre todo */
-#menu-toggle {
-  position: relative;
-  z-index: 1100;         /* sobre todo */
-  pointer-events: auto;  /* asegúrate de que reciba clicks */
-  -webkit-tap-highlight-color: rgba(0,0,0,0); /* evita highlight en iOS/Android */
-  background: transparent;
-  border: none;
-}
-
-/* Si hay un overlay añádelo (opcional visual) */
+/* --- Overlay para el menú móvil --- */
+/* (El JS lo crea y lo muestra) */
 .nav-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  z-index: 1050;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* Negro semitransparente */
+  z-index: 101; /* Debajo del menú (102) y botón (103) */
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
+
 .nav-overlay.visible {
   opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
+}
+
+/* --- Efecto 'scrolled' para el header --- */
+/* (El JS lo aplica al hacer scroll) */
+header.scrolled {
+  background-color: rgba(30, 41, 59, 0.9); /* bg-card con transparencia */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px); /* Soporte para Safari */
+  border-bottom: 1px solid var(--border-color);
 }
