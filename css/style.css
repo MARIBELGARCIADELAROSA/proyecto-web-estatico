@@ -468,3 +468,28 @@ footer {
     font-size: 0.9rem;
   }
 }
+
+/* Asegurar que el botón sea clicable y visible sobre todo */
+#menu-toggle {
+  position: relative;
+  z-index: 1100;         /* sobre todo */
+  pointer-events: auto;  /* asegúrate de que reciba clicks */
+  -webkit-tap-highlight-color: rgba(0,0,0,0); /* evita highlight en iOS/Android */
+  background: transparent;
+  border: none;
+}
+
+/* Si hay un overlay añádelo (opcional visual) */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.nav-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
